@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <h1>ForEach Callback Example</h1>
+    <button onclick="addTwo()">Add 2 to Each Number</button>
+    <p id="output"></p>
+    <script>
+        function addTwo() {
+            let arr = [3, 7, 12, 18];
+            arr.forEach(function(item, i) {
+                arr[i] = item + 2; 
+            });
+            document.getElementById("output").innerHTML = 
+                "New Array after adding 2: <b>" + arr + "</b>";
+        }
+    </script>
+</body>
+</html>

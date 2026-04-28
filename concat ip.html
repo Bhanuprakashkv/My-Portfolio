@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Input</title>
+</head>
+<body>
+
+    <div>
+        <form>
+            <input type="text" id="ip">
+            <input type="button" value="Enter" onclick="test()">
+        </form>
+    </div>
+
+    <div id="op"></div>
+
+    <script>
+        function test() {
+            var n = document.getElementById("ip").value;
+            var output = document.getElementById("op");
+            
+            output.innerHTML = n;
+            output.style.color = "red";
+            output.style.fontSize = "20px";
+            output.style.fontWeight = "bold";
+        }
+    </script>
+
+</body>
+</html>

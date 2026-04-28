@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Header & Footer */
+        .header, .footer {
+            border: 2px solid #000;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .header { background-color: #90ee90; font-size: 24px; }
+        .footer { background-color: #f08080; font-size: 20px; }
+
+        /* Main Body Area */
+        .main-container {
+            background-color: #add8e6; /* Light blue */
+            border: 2px solid #000;
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        /* FLEX WRAPPER: This puts the tables side-by-side */
+        .tables-wrapper {
+            display: flex;
+            align-items: flex-start; /* Keeps them aligned at the top */
+            gap: 50px;               /* Space between the two tables */
+            margin-left: 50px;       /* Padding from the left side */
+        }
+
+        /* Table Styling */
+        table {
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border: 1px solid #777;
+        }
+
+        td, th {
+            border: 1px solid #777;
+            padding: 10px 15px;
+            color: #000;
+        }
+
+        th { background-color: #eee; }
+
+        .button-group {
+            margin-top: 15px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">header division</div>
+
+    <div class="main-container">
+        <h2>Registration Form</h2>
+        
+        <div class="tables-wrapper">
+            
+            <table>
+                <tr><td>User Name</td><td><input type="text"></td></tr>
+                <tr><td>Password</td><td><input type="password"></td></tr>
+                <tr><td>Email</td><td><input type="email"></td></tr>
+                <tr><td>Phone No</td><td><input type="text"></td></tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <input type="radio" name="g"> Male 
+                        <input type="radio" name="g"> Female
+                    </td>
+                </tr>
+                <tr><td>Age</td><td><input type="number"></td></tr>
+                <tr><td>Select Date</td><td><input type="date"></td></tr>
+                <tr><td>Select Time</td><td><input type="time"></td></tr>
+            </table>
+
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Pending</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="button-group">
+            <button>Login</button>
+            <button>Sign In</button>
+        </div>
+    </div>
+
+    <div class="footer">footer badge</div>
+
+</body>
+</html>

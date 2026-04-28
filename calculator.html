@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-5">
+    <div class="card mx-auto" style="max-width: 300px;">
+        <div class="card-body">
+            <input type="text" id="res" class="form-control mb-3 text-end fs-4" readonly placeholder="0">
+            <div class="row g-2">
+                <div class="col-3"><button class="btn btn-danger w-100" onclick="clr()">C</button></div>
+                <div class="col-3"><button class="btn btn-secondary w-100" onclick="ins('/')">/</button></div>
+                <div class="col-3"><button class="btn btn-secondary w-100" onclick="ins('*')">x</button></div>
+                <div class="col-3"><button class="btn btn-secondary w-100" onclick="ins('-')">-</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('7')">7</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('8')">8</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('9')">9</button></div>
+                <div class="col-3"><button class="btn btn-secondary w-100" onclick="ins('+')">+</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('4')">4</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('5')">5</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('6')">6</button></div>
+                <div class="col-3"><button class="btn btn-primary w-100" onclick="eql()">=</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('1')">1</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('2')">2</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('3')">3</button></div>
+                <div class="col-3"><button class="btn btn-light border w-100" onclick="ins('0')">0</button></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let screen = document.getElementById('res');
+        function ins(v) { 
+            screen.value += v; 
+        }
+        function clr() { 
+            screen.value = ""; 
+        }
+        function eql() {
+            try {
+                screen.value = eval(screen.value);
+            } catch {
+                screen.value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>

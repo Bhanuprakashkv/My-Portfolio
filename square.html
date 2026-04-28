@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2x2 Square Fit</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; }
+        .container { max-width: 400px; }
+        #op { 
+            margin-top: 20px; 
+            font-family: monospace; 
+            font-size: 18px;
+            line-height: 1.2;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .count { color: #d35400; font-weight: bold; font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Triangle Square Predictor (2x2)</h3>
+        <p>Enter the base (n):</p>
+        <input type="number" id="ip" value="6">
+        <input type="button" value="Calculate" onclick="calculate()">
+    </div>
+    <div id="op"></div>
+    <script>
+        function calculate() {
+            var n = parseInt(document.getElementById("ip").value);
+            var output = document.getElementById("op");
+            if (isNaN(n) || n < 2) {
+                output.innerHTML = "Base must be at least 2.";
+                return;
+            }
+            let totalSquares = 0;
+            let visualization = "";
+            let levels = Math.floor((n - 2) / 2);
+            for (let i = levels; i >= 1; i--) {
+                totalSquares += i;
+                visualization += "■ ".repeat(i) + "<br>";
+            }
+            output.innerHTML = `
+                <div class="count">Total 2x2 Squares: ${totalSquares}</div>
+                <hr>
+                <div style="letter-spacing: 5px;">${visualization || "Triangle too small for 2x2 squares."}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
