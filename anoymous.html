@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Functionality & Exception Handling</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; padding: 20px; }
+        .console-box { 
+            background: #212529; 
+            color: #0dfd05; 
+            padding: 15px; 
+            border-radius: 5px; 
+            font-family: 'Courier New', monospace;
+            min-height: 100px;
+        }
+        .card { margin-bottom: 20px; border: none; shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="pb-3 mb-4 border-bottom">
+        <span class="fs-4">JS Fundamentals: Functions & Error Handling</span>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm">
+                <h5 class="card-title">Test Exception Handling</h5>
+                <p class="text-muted small">Enter a number to calculate square root. Try entering text or a negative number to trigger errors.</p>
+                <div class="input-group mb-3">
+                    <input type="text" id="userInput" class="form-control" placeholder="Enter a number...">
+                    <button class="btn btn-primary" onclick="handleCalculation()">Run Logic</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm">
+                <h5 class="card-title">Console Output</h5>
+                <div id="output" class="console-box">Click "Run Logic" to see results...</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 1. Anonymous Function
+    // Assigned to a variable; has no name of its own.
+    const logger = function(message) {
+        const out = document.getElementById('output');
+        out.innerHTML += `> ${message}<br>`;
+    };
+    // 2. Passing an Anonymous Function to another function (Callback)
+    function processData(value, callback) {
+        const result = value * 2;
+        callback(`Callback Result: ${result}`);
+    }
+    // 3. Arrow Function (Basic)
+    const clearConsole = () => {
+        document.getElementById('output').innerHTML = '';
+    };
+    // 4. Arrow Function with Default Arguments
+    // If 'name' is not provided, it defaults to 'User'
+    const greet = (name = "User") => `Hello, ${name}! Welcome to the debugger.`;
+    // 5. Exception Handling (try, catch, throw, finally)
+    function handleCalculation() {
+        clearConsole();
+        const input = document.getElementById('userInput').value;
+        try {
+            logger(greet("Developer")); // Using arrow function with default
+            // Validate Input
+            if (input === "") throw "Input is empty!";
+            if (isNaN(input)) throw "That is not a number!";
+            if (Number(input) < 0) throw "Cannot square root negative numbers in this demo.";
+            // Success logic using the passing-function pattern
+            processData(input, (msg) => {
+                logger(`Step 1: ${msg}`);
+                logger(`Step 2: Math.sqrt results in ${Math.sqrt(input).toFixed(2)}`);
+            });
+        } catch (error) {
+            // 'catch' handles the 'throw'
+            logger(`<span class="text-danger">ERROR: ${error}</span>`);
+        } finally {
+            // 'finally' runs regardless of success or failure
+            logger(`<span class="text-info">Execution Attempt Finished.</span>`);
+        }
+    }
+</script>
+</body>
+</html>

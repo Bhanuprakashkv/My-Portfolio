@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<div> 
+	<h1>var vs let</h1>
+	<input type="button" value="Test Now" onclick="test()">
+</div>
+<div id="op"></div>
+<script>
+	function test() {
+    	var a = 30;
+	{
+        	var a = 20;
+        	console.log(a); 
+       		var a = 50;	}
+    console.log(a); 
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D. Ajay Babu's Learning Hub</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+      color: #f8fafc;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, h6, .navbar-brand {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Glassmorphic Navbar */
+    .navbar {
+      background: rgba(15, 23, 42, 0.7) !important;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 0;
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      min-height: calc(100vh - 72px);
+      background: rgba(15, 23, 42, 0.4) !important;
+      border-right: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+    
+    .sidebar h4 {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      color: #94a3b8;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 0.5rem;
+      text-decoration: none;
+    }
+
+    .sidebar .nav-link {
+      color: #cbd5e1;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar .nav-link:hover, .sidebar .nav-link.active {
+      background: var(--glass-bg);
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    .sidebar .nav-link.active {
+      background: var(--primary-gradient);
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Elegant Cards */
+    .card {
+      background: rgba(30, 41, 59, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(168, 85, 247, 0.4);
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--glass-border);
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #f1f5f9;
+    }
+
+    .card-text {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .list-group-item {
+      background: transparent;
+      border-color: var(--glass-border);
+      color: #94a3b8;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .list-group-item::before {
+      content: '▹';
+      color: #a855f7;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .card-link {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 10px;
+      background: var(--glass-bg);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+    }
+
+    .card-link:hover {
+      background: var(--primary-gradient);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .page-header h3 {
+      font-weight: 800;
+      font-size: 2.2rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.8) !important;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
+      padding: 1.5rem 0;
+      color: #94a3b8;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="#"><i class="bi bi-layers-half me-2"></i>D.Ajay Babu's Hub</a>
+    <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2 col-md-3 sidebar collapse show" id="sidebarMenu">
+      <div class="p-4">
+        <h4>Navigation</h4>
+        <ul class="nav flex-column gap-2">
+          <li class="nav-item"><a class="nav-link active" href="html page.html" target="_blank"><i class="bi bi-filetype-html"></i> HTML Core</a></li>
+          <li class="nav-item"><a class="nav-link" href="css page.html" target="_blank"><i class="bi bi-filetype-css"></i> CSS Styling</a></li>
+          <li class="nav-item"><a class="nav-link" href="bootstrap page.html"><i class="bi bi-bootstrap"></i> Bootstrap</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <main class="col-lg-10 col-md-9 p-4 p-lg-5">
+      <div class="page-header">
+        <h3>Mastering Web Technologies</h3>
+        <p class="text-secondary fs-5 mt-2">Explore concepts, frameworks, and practical examples</p>
+      </div>
+      
+      <div class="row g-5">
+
+        <div class="col-xl-4 col-md-6">
+          <div class="card h-100">
+            <div class="overflow-hidden">
+              <img src="html_concept.png" class="card-img-top" alt="HTML Illustration">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">HTML Foundation</h5>
+              <p class="card-text">HTML is the standard markup language for Web pages. It provides the structure that forms the backbone of any application. Start your journey and build your own website seamlessly.</p>
+            </div>
+            <ul class="list-group list-group-flush border-top border-secondary border-opacity-25 pb-3">
+              <li class="list-group-item">Meta Refresh Tech</li>
+              <li class="list-group-item">Registration Form UI</li>
+              <li class="list-group-item">Semantic Lists Organization</li>
+            </ul>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4">
+              <a href="html page.html" class="card-link" target="_blank">Explore HTML</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6">
+          <div class="card h-100">
+            <div class="overflow-hidden">
+              <img src="css_concept.png" class="card-img-top" alt="CSS Illustration">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">CSS Aesthetics</h5>
+              <p class="card-text">CSS stands for Cascading Style Sheets. It is the language used to style an HTML document. Transform plain text into visual masterpieces with colors, layouts, and responsive designs.</p>
+            </div>
+            <ul class="list-group list-group-flush border-top border-secondary border-opacity-25 pb-3">
+              <li class="list-group-item">Inline CSS Properties</li>
+              <li class="list-group-item">Internal Block Styling</li>
+              <li class="list-group-item">External Stylesheets</li>
+            </ul>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4">
+              <a href="css page.html" class="card-link" target="_blank">Explore CSS</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6">
+          <div class="card h-100">
+            <div class="overflow-hidden">
+              <img src="bootstrap_concept.png" class="card-img-top" alt="Bootstrap Illustration">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Bootstrap Framework</h5>
+              <p class="card-text">A powerful front-end framework for rapid web development. Utilize pre-built design templates, sophisticated responsive grids, typography, and interactive components.</p>
+            </div>
+            <ul class="list-group list-group-flush border-top border-secondary border-opacity-25 pb-3">
+              <li class="list-group-item">Interactive Accordions</li>
+              <li class="list-group-item">Color Utility Classes</li>
+              <li class="list-group-item">Responsive Tables</li>
+            </ul>
+            <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4">
+              <a href="bootstrap page.html" class="card-link" target="_blank">Explore Bootstrap</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer class="text-center">
+  <p class="mb-1 fw-medium">© 2026 || Interactive Learning Space</p>
+  <small class="text-secondary">Designed with modern web practices</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

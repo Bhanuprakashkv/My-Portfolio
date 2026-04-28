@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Text Styler</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f7f6; }  
+        /* The Display Area */
+        #display-container {
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #dee2e6;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            background-color: white;
+        }
+        #output-text {
+            font-size: 2rem;
+            word-break: break-word;
+            padding: 20px;
+            text-align: center;
+        }
+        /* Custom "Design" Backgrounds */
+        .bg-pattern-dots { background-image: radial-gradient(#444 1px, transparent 1px); background-size: 20px 20px; }
+        .bg-pattern-lines { background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%), linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%); background-size: 20px 20px; }
+        .bg-gradient-cool { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; }
+    </style>
+</head>
+<body class="py-5">
+<div class="container">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h5 class="mb-3">Text Controls</h5>        
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Enter Your Text</label>
+                    <input type="text" id="text-input" class="form-control" placeholder="Type something cool...">
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label fw-bold">Text Color</label>
+                        <input type="color" id="text-color" class="form-control form-control-color w-100" value="#000000">
+                    </div>
+                    <div class="col">
+                        <label class="form-label fw-bold">BG Color</label>
+                        <input type="color" id="bg-color" class="form-control form-control-color w-100" value="#ffffff">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Styles</label>
+                    <div class="d-flex gap-2">
+                        <input type="checkbox" class="btn-check" id="btn-bold" autocomplete="off">
+                        <label class="btn btn-outline-secondary btn-sm" for="btn-bold">Bold</label>
+                        <input type="checkbox" class="btn-check" id="btn-italic" autocomplete="off">
+                        <label class="btn btn-outline-secondary btn-sm" for="btn-italic">Italic</label>
+                        <select id="font-size" class="form-select form-select-sm w-50">
+                            <option value="1rem">Small</option>
+                            <option value="2rem" selected>Medium</option>
+                            <option value="4rem">Large</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Background Design</label>
+                    <select id="design-bg" class="form-select">
+                        <option value="none">Plain Color</option>
+                        <option value="bg-pattern-dots">Dotted Pattern</option>
+                        <option value="bg-pattern-lines">Lined Pattern</option>
+                        <option value="bg-gradient-cool">Cool Gradient</option>
+                    </select>
+                </div>
+                <button id="reset-btn" class="btn btn-danger w-100 mt-2">Reset All</button>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white fw-bold">Live Preview</div>
+                <div class="card-body">
+                    <div id="display-container">
+                        <span id="output-text">Your text will appear here</span>
+                    </div>
+                </div>
+                <div class="card-footer text-end">
+                    <button id="clear-text" class="btn btn-sm btn-link text-decoration-none">Clear Content</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // --- SELECTING ELEMENTS ---
+    const textInput = document.getElementById('text-input');
+    const textColor = document.getElementById('text-color');
+    const bgColor = document.getElementById('bg-color');
+    const fontSize = document.getElementById('font-size');
+    const isBold = document.getElementById('btn-bold');
+    const isItalic = document.getElementById('btn-italic');
+    const designBg = document.getElementById('design-bg');
+    const outputText = document.getElementById('output-text');
+    const container = document.getElementById('display-container');
+    const resetBtn = document.getElementById('reset-btn');
+    const clearBtn = document.getElementById('clear-text');
+    // --- LOGIC FUNCTIONS ---
+    const updateStyles = () => {
+        // 1. Update Content
+        outputText.textContent = textInput.value || "Your text will appear here";
+        // 2. Update Colors
+        outputText.style.color = textColor.value;
+        container.style.backgroundColor = bgColor.value;
+        // 3. Update Text Styles
+        outputText.style.fontWeight = isBold.checked ? 'bold' : 'normal';
+        outputText.style.fontStyle = isItalic.checked ? 'italic' : 'normal';
+        outputText.style.fontSize = fontSize.value;
+        // 4. Update Background Design (Classes)
+        // First, remove any existing design classes
+        container.classList.remove('bg-pattern-dots', 'bg-pattern-lines', 'bg-gradient-cool');
+        if (designBg.value !== 'none') {
+            container.classList.add(designBg.value);
+        }
+    };
+    // --- EVENT HANDLERS ---
+    // Using 'input' event for real-time updates as you type/select
+    textInput.addEventListener('input', updateStyles);
+    textColor.addEventListener('input', updateStyles);
+    bgColor.addEventListener('input', updateStyles);
+    fontSize.addEventListener('change', updateStyles);
+    isBold.addEventListener('change', updateStyles);
+    isItalic.addEventListener('change', updateStyles);
+    designBg.addEventListener('change', updateStyles);
+    // Remove Element (Content)
+    clearBtn.addEventListener('click', () => {
+        textInput.value = "";
+        updateStyles();
+    });
+    // Reset All Attributes & Styles
+    resetBtn.addEventListener('click', () => {
+        textInput.value = "";
+        textColor.value = "#000000";
+        bgColor.value = "#ffffff";
+        isBold.checked = false;
+        isItalic.checked = false;
+        fontSize.value = "2rem";
+        designBg.value = "none";
+        updateStyles();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort Words</title>
+</head>
+<body>
+<h3>Enter a sentence:</h3>
+<input type="text" id="inputText">
+<button onclick="sortWords()">Sort Words</button>
+<h3>Result:</h3>
+<p id="output"></p>
+<script>
+function sortWords() {
+    let sentence = document.getElementById("inputText").value;
+    let words = sentence.split(" ");
+    words.sort();
+    let result = words.join(" ");
+    document.getElementById("output").innerText = result;
+}
+</script>
+</body>
+</html>

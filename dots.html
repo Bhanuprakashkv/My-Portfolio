@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Star Pattern</title>
+</head>
+<body>
+
+    <div>
+        <form>
+            <input type="number" id="ip" placeholder="Enter a number">
+            <input type="button" value="Start Now" onclick="test()">
+        </form>
+    </div>
+
+    <div id="op" style="margin-top: 10px; font-family: monospace;"></div>
+
+    <script>
+        function test() {
+            // Get the input value and convert it to a number
+            var n = parseInt(document.getElementById("ip").value);
+            var outputDiv = document.getElementById("op");
+            
+            // Clear previous output
+            outputDiv.innerHTML = "";
+
+            // Check if input is a valid number
+            if (isNaN(n) || n <= 0) {
+                outputDiv.innerHTML = "Please enter a valid positive number.";
+                return;
+            }
+
+            var pattern = "";
+            for (var i = 1; i <= n; i++) {
+                // Add 'i' number of stars and a line break
+                pattern += "*".repeat(i) + "<br>";
+            }
+
+            // Display the final pattern
+            outputDiv.innerHTML = pattern;
+        }
+    </script>
+
+</body>
+</html>
