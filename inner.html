@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Input</title>
+</head>
+<body>
+
+    <div>
+        <form>
+            <input type="text" id="ip">
+            <input type="button" value="Start Now" onclick="test()">
+        </form>
+    </div>
+
+    <div id="op"></div>
+
+    <script>
+        function test() {
+            var n = document.getElementById("ip").value;
+            
+            // This replaces the content of the 'op' div with the value of 'n'
+            document.getElementById("op").innerHTML = n;
+        }
+    </script>
+
+</body>
+</html>

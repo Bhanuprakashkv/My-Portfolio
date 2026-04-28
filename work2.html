@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wish Generator</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 320px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h2 { margin-bottom: 1.5rem; font-weight: 600; }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #475569;
+            background: #334155;
+            color: white;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        #output {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            min-height: 1.5rem;
+            font-style: italic;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Birthday Magic ✨</h2>
+    <input type="date" id="birthday">
+    <button onclick="showMessage()">Reveal My Message</button>
+    <p id="output"></p>
+</div>
+
+<script>
+    const nice = [
+        "You’re a legend in the making! 🌟",
+        "The world is better with you in it.",
+        "May your year be as bright as your smile!",
+        "Stay classy and keep shining!"
+    ];
+
+    const tease = [
+        "Don't worry, you don't look a day over 80. 😉",
+        "Happy Birthday! (Your gift is this message).",
+        "Level unlocked: Advanced Adulting! 🎮",
+        "I’d bake you a cake, but I ate the batter."
+    ];
+
+    function showMessage() {
+        const dateInput = document.getElementById("birthday").value;
+        const output = document.getElementById("output");
+
+        if (!dateInput) {
+            output.textContent = "Please pick a date first! 📅";
+            return;
+        }
+
+        const categories = [nice, tease];
+        const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+        const randomMessage = randomCategory[Math.floor(Math.random() * randomCategory.length)];
+
+        // Add a simple fade-in effect via JS
+        output.style.opacity = 0;
+        setTimeout(() => {
+            output.textContent = randomMessage;
+            output.style.opacity = 1;
+            output.style.transition = "opacity 0.5s";
+        }, 100);
+    }
+</script>
+
+</body>
+</html>
