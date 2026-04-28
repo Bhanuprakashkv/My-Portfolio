@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K.V.Bhanuprakash Portfolio</title>
+  <style>
+    :root {
+      --bg: #f6efe6;
+      --panel: rgba(255, 251, 246, 0.88);
+      --ink: #1d1b1a;
+      --muted: #5e554d;
+      --brand: #d96c3f;
+      --brand-deep: #7f3f2f;
+      --accent: #1f6f78;
+      --line: rgba(29, 27, 26, 0.12);
+      --shadow: 0 20px 45px rgba(74, 46, 35, 0.14);
+      --radius: 24px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(217, 108, 63, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(31, 111, 120, 0.18), transparent 30%),
+        linear-gradient(180deg, #fffaf4 0%, var(--bg) 48%, #efe3d3 100%);
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .wrapper {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 250, 244, 0.72);
+      border-bottom: 1px solid rgba(29, 27, 26, 0.08);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.96rem;
+    }
+    .nav-links a {
+      color: var(--muted);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      padding: 68px 0 36px;
+    }
+    .hero-copy,
+    .hero-card,
+    .section-panel,
+    .project-card,
+    .contact-card {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-copy {
+      padding: 42px;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(217, 108, 63, 0.12);
+      color: var(--brand-deep);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      margin-bottom: 18px;
+    }
+    .hero-copy p {
+      color: var(--muted);
+      max-width: 58ch;
+      margin-bottom: 24px;
+      font-size: 1.06rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+    }
+    .button-primary {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(217, 108, 63, 0.28);
+    }
+    .button-secondary {
+      border-color: var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.56);
+    }
+    .hero-card {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before,
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+    }
+    .hero-card::before {
+      width: 180px;
+      height: 180px;
+      background: var(--brand);
+      top: -40px;
+      right: -40px;
+    }
+    .hero-card::after {
+      width: 120px;
+      height: 120px;
+      background: var(--accent);
+      bottom: -30px;
+      left: -20px;
+    }
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+    }
+    .hero-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .hero-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+    .hero-list li {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(29, 27, 26, 0.08);
+    }
+    section {
+      padding: 28px 0;
+    }
+    .section-heading {
+      margin-bottom: 18px;
+    }
+    .section-heading p {
+      color: var(--muted);
+      max-width: 64ch;
+      margin-top: 10px;
+    }
+    .about-grid,
+    .stats-grid,
+    .skills-grid,
+    .projects-grid,
+    .contact-grid {
+      display: grid;
+      gap: 20px;
+    }
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .section-panel {
+      padding: 28px;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 20px;
+    }
+    .stat {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(29, 27, 26, 0.08);
+    }
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--brand-deep);
+    }
+    .skills-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .skill-chip {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(29, 27, 26, 0.08);
+      text-align: center;
+      font-weight: 700;
+    }
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .project-card {
+      padding: 24px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(74, 46, 35, 0.2);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(31, 111, 120, 0.11);
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .project-card h3 {
+      margin-bottom: 10px;
+    }
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .project-card ul {
+      padding-left: 18px;
+      color: var(--ink);
+    }
+    .contact-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+    .contact-card {
+      padding: 28px;
+    }
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      animation: reveal 0.8s ease forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 960px) {
+      .hero,
+      .about-grid,
+      .contact-grid,
+      .projects-grid,
+      .skills-grid,
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero {
+        padding-top: 42px;
+      }
+    }
+    @media (max-width: 680px) {
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hero,
+      .about-grid,
+      .contact-grid,
+      .projects-grid,
+      .skills-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-copy,
+      .hero-card,
+      .section-panel,
+      .project-card,
+      .contact-card {
+        padding: 22px;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrapper nav">
+      <a class="brand" href="#home">KVBP PORTFOLIO</a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="home" class="wrapper">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Aspiring Data Security Analyst | Web Developer</span>
+        <h1>Kuppili Venkata Bhanuprakash building secure, practical, user-focused web solutions.</h1>
+        <p>
+          Results-driven and self-motivated developer with a strong passion for continuous learning, clean code,
+          and emerging technologies. I enjoy building impactful technical solutions and growing toward data and
+          system security roles.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">View My Work</a>
+          <a class="button button-secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <aside class="hero-card reveal delay-1">
+        <div class="hero-card-inner">
+          <p class="hero-title">Core profile</p>
+          <ul class="hero-list">
+            <li><strong>Career Goal:</strong> Aspiring Data Security Analyst with web development experience.</li>
+            <li><strong>Current Study:</strong> B.Tech in Computer Science and Information Technology.</li>
+            <li><strong>Strengths:</strong> problem solving, adaptability, collaboration, and continuous learning.</li>
+            <li><strong>Technical Interest:</strong> security, full-stack web apps, and real-world student platforms.</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+    <section id="about">
+      <div class="section-heading reveal">
+        <h2>About Me</h2>
+        <p>
+          This portfolio reflects both my practice work and my resume. It highlights my academic background,
+          technical skills, major projects, and the direction I am building toward as a developer and security-focused learner.
+        </p>
+      </div>
+      <div class="about-grid">
+        <article class="section-panel reveal delay-1">
+          <h3>My Background</h3>
+          <p>
+            I am currently pursuing Computer Science and Information Technology at Lendi Institute of Engineering
+            and Technology with a CGPA of 7.66. Before that, I completed MPC at Narayana Junior College with
+            862/1000 and SSC with 600/600 marks.
+          </p>
+          <div class="stats-grid">
+            <div class="stat">
+              <strong>2023-2027</strong>
+              <span>B.Tech in CS and IT</span>
+            </div>
+            <div class="stat">
+              <strong>7.66</strong>
+              <span>current CGPA</span>
+            </div>
+            <div class="stat">
+              <strong>2024</strong>
+              <span>Smart India Hackathon coordinator</span>
+            </div>
+          </div>
+        </article>
+        <article class="section-panel reveal delay-2">
+          <h3>Objective</h3>
+          <p>
+            I want to apply my development skills in environments where I can learn faster, build reliable
+            applications, and deepen my knowledge in network, system, and data security while contributing
+            meaningful technical solutions.
+          </p>
+        </article>
+      </div>
+    </section>
+    <section id="skills">
+      <div class="section-heading reveal">
+        <h2>Skills</h2>
+        <p>These skills are taken from my resume and supported by the work I have been practicing.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-chip reveal delay-1">HTML & CSS</div>
+        <div class="skill-chip reveal delay-2">JavaScript</div>
+        <div class="skill-chip reveal delay-3">React</div>
+        <div class="skill-chip reveal delay-4">Node.js</div>
+        <div class="skill-chip reveal delay-1">Java</div>
+        <div class="skill-chip reveal delay-2">C & C++</div>
+        <div class="skill-chip reveal delay-3">Network & System Security</div>
+        <div class="skill-chip reveal delay-4">Problem Solving</div>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="section-heading reveal">
+        <h2>Featured Projects</h2>
+        <p>
+          These are the major projects from my resume, supported by the HTML, CSS, Bootstrap, and JavaScript
+          practice work I have been doing.
+        </p>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card reveal delay-1">
+          <span class="tag">Web Application</span>
+          <h3>Campus Placement Portal</h3>
+          <p>
+            Built a centralized placement platform with GitHub and LinkedIn integration, secure user
+            authentication, internal messaging, learning resources, events, and communities.
+          </p>
+          <ul>
+            <li>Focused on student placement support in one system</li>
+            <li>Included authentication and communication features</li>
+            <li>Technologies: HTML, CSS, React JS, Angular JS, JavaScript, Node.js, Supabase</li>
+          </ul>
+        </article>
+        <article class="project-card reveal delay-2">
+          <span class="tag">AI + Voice</span>
+          <h3>Text to Speech Converter</h3>
+          <p>
+            Built a multilingual text-to-speech web application with PDF upload support and downloadable audio output.
+          </p>
+          <ul>
+            <li>Converted written content into audio</li>
+            <li>Added document-based input handling</li>
+            <li>Technologies: HTML, CSS, JavaScript, Gemini API, Amazon Polly</li>
+          </ul>
+        </article>
+        <article class="project-card reveal delay-3">
+          <span class="tag">Career Platform</span>
+          <h3>Vidya Sethu</h3>
+          <p>
+            Built a personalized career guidance web application with roadmap generation, course and internship
+            suggestions, and resume creation support.
+          </p>
+          <ul>
+            <li>Helped users plan academic and career direction</li>
+            <li>Combined guidance features with useful student resources</li>
+            <li>Technologies: HTML, CSS, JavaScript, PHP, MySQL</li>
+          </ul>
+        </article>
+        <article class="project-card reveal delay-1">
+          <span class="tag">Practice Base</span>
+          <h3>Front-End Practice Collection</h3>
+          <p>
+            Created a strong learning foundation through many practice files covering forms, tables, layouts,
+            calculator logic, Bootstrap pages, DOM tasks, and JavaScript concepts.
+          </p>
+          <ul>
+            <li>Improved page design and styling skills</li>
+            <li>Practiced interaction with JavaScript basics</li>
+            <li>Turned small exercises into portfolio-ready examples</li>
+          </ul>
+        </article>
+        <article class="project-card reveal delay-2">
+          <span class="tag">Leadership</span>
+          <h3>Student Coordinator Experience</h3>
+          <p>
+            Served as Student Coordinator for Smart India Hackathon 2024 and supported student activities and event execution.
+          </p>
+          <ul>
+            <li>Helped organize and coordinate team activities</li>
+            <li>Worked in a collaborative technical event setting</li>
+            <li>Built communication and project management confidence</li>
+          </ul>
+        </article>
+        <article class="project-card reveal delay-3">
+          <span class="tag">Learning</span>
+          <h3>Continuous Skill Development</h3>
+          <p>
+            Participated in an Oracle Java webinar and continue strengthening development and security-oriented skills.
+          </p>
+          <ul>
+            <li>Expanding full-stack and programming fundamentals</li>
+            <li>Building stronger confidence in Java and web technologies</li>
+            <li>Preparing for future software and security opportunities</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="section-heading reveal">
+        <h2>Contact</h2>
+        <p>
+          These details were updated from your resume and can be refined further if you want exact public profile links displayed.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal delay-1">
+          <h3>Let us connect</h3>
+          <p>
+            I am looking for opportunities to learn, contribute, and grow in software development and data security.
+          </p>
+          <ul class="contact-list">
+            <li><strong>Name:</strong> Kuppili Venkata Bhanuprakash</li>
+            <li><strong>Email:</strong> kuppilivenkatabhanuprakash0613@gmail.com</li>
+            <li><strong>Phone:</strong> +91 9492905819</li>
+            <li><strong>Location:</strong> Srikakulam - 532185</li>
+          </ul>
+        </div>
+        <div class="contact-card reveal delay-2">
+          <h3>Profiles and Languages</h3>
+          <p>
+            Languages known: Telugu, English, and Hindi. You also listed GitHub and LinkedIn in your resume, so
+            those can be added as direct links once you want the exact URLs shown in the page.
+          </p>
+          <div class="hero-actions" style="margin-top: 18px; gap: 10px;">
+            <a class="button button-primary" href="https://github.com/Bhanuprakashkv" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button button-secondary" href="#home">Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer wrapper">
+    <p>Portfolio of Kuppili Venkata Bhanuprakash, aspiring data security analyst and developer.</p>
+  </footer>
+</body>
+</html>
